@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask API Interface</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .card-title {
+            color: #007bff;
+        }
+        .btn-primary, .btn-success {
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .result {
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Flask API Interface</h1>
+        
+        <div class="card my-4">
+            <div class="card-body">
+                <h2 class="card-title">Get User</h2>
+                <div class="form-group">
+                    <label for="userId">User ID</label>
+                    <input type="text" id="userId" class="form-control" placeholder="Enter User ID">
+                </div>
+                <button class="btn btn-primary" onclick="getUser()">Get User</button>
+                <pre class="result mt-3" id="getUserResult"></pre>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-body">
+                <h2 class="card-title">Create User</h2>
+                <div class="form-group">
+                    <label for="newUserId">User ID</label>
+                    <input type="text" id="newUserId" class="form-control" placeholder="Enter User ID">
+                </div>
+                <div class="form-group">
+                    <label for="newUserName">User Name</label>
+                    <input type="text" id="newUserName" class="form-control" placeholder="Enter User Name">
+                </div>
+                <div class="form-group">
+                    <label for="newUserEmail">User Email</label>
+                    <input type="email" id="newUserEmail" class="form-control" placeholder="Enter User Email">
+                </div>
+                <button class="btn btn-success" onclick="createUser()">Create User</button>
+                <pre class="result mt-3" id="createUserResult"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
