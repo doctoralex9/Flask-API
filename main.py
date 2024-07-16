@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-
+from flask_sqlalchemy import SQLAlchemy
 from app import create_app
 
 app = create_app()
@@ -7,31 +7,34 @@ app = create_app()
 if __name__ == "__main__":
     app.run(debug=True)
 
-
 app = Flask(__name__)
+# Use your actual database name, username, and password
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://myuser:mypassword@localhost:5432/mydatabase'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
-@app.route("/get-user/<user_id>")
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
 
+@app.route("/")
+def index():
+    return "Welcome to the User Management API!"
+
+@app.route("/get-user/<int:user_id>")
 def get_user(user_id):
-    user_data = {
-        "user_id":user_id,
-        "name":"Jonh Doe",
-        "email": "john.doe@example.com"
-    }
+    user = User.query.get(user_id)
+    if user:
+        return jsonify({"id": user.id, "name": user.name, "email": user.email}), 200
+    return jsonify({"error": "User not found"}), 404
 
-
-    extra = request.args.get("extra")
-    if extra:
-        user_data["extra"] = extra
-
-    return jsonify(user_data), 200  
-
-       
 @app.route("/create-user", methods=["POST"])
 def create_user():
-    data =  request.get_json()
+    data = request.get_json()
+    new_user = User(name=data['name'], email=data['email'])
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({"message": "User created successfully"}), 201
 
-    return jsonify(data), 201
 
-if __name__=="__main__":
-    app.run(debug=True)
