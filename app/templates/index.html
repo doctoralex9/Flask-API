@@ -21,7 +21,7 @@
         .card-title {
             color: #007bff;
         }
-        .btn-primary, .btn-success {
+        .btn-primary, .btn-success, .btn-danger {
             width: 100%;
         }
         .btn-primary {
@@ -32,6 +32,10 @@
             background-color: #28a745;
             border-color: #28a745;
         }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
         .btn-primary:hover {
             background-color: #0056b3;
             border-color: #0056b3;
@@ -39,6 +43,10 @@
         .btn-success:hover {
             background-color: #218838;
             border-color: #1e7e34;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
         }
         .result {
             background-color: #e9ecef;
@@ -85,14 +93,43 @@
                 <pre class="result mt-3" id="createUserResult"></pre>
             </div>
         </div>
+
+        <div class="card my-4">
+            <div class="card-body">
+                <h2 class="card-title">Update User</h2>
+                <div class="form-group">
+                    <label for="updateUserId">User ID</label>
+                    <input type="text" id="updateUserId" class="form-control" placeholder="Enter User ID">
+                </div>
+                <div class="form-group">
+                    <label for="updateUserName">New User Name</label>
+                    <input type="text" id="updateUserName" class="form-control" placeholder="Enter New User Name">
+                </div>
+                <div class="form-group">
+                    <label for="updateUserEmail">New User Email</label>
+                    <input type="email" id="updateUserEmail" class="form-control" placeholder="Enter New User Email">
+                </div>
+                <button class="btn btn-success" onclick="updateUser()">Update User</button>
+                <pre class="result mt-3" id="updateUserResult"></pre>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-body">
+                <h2 class="card-title">Delete User</h2>
+                <div class="form-group">
+                    <label for="deleteUserId">User ID</label>
+                    <input type="text" id="deleteUserId" class="form-control" placeholder="Enter User ID">
+                </div>
+                <button class="btn btn-danger" onclick="deleteUser()">Delete User</button>
+                <pre class="result mt-3" id="deleteUserResult"></pre>
+            </div>
+        </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-
+    
     
     <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/oversea/index.js"></script>
     <script>
@@ -106,5 +143,11 @@
         });
     </script>
   
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>
