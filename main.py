@@ -1,16 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from app import create_app
-
-app = create_app()
-
-if __name__ == "__main__":
-    app.run(debug=True)
+from config import Config
 
 app = Flask(__name__)
-# Use your actual database name, username, and password
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://myuser:mypassword@localhost:5432/mydatabase'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_object(Config)
+
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -36,7 +30,6 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "User created successfully"}), 201
-
 
 @app.route("/update-user/<int:user_id>", methods=["PUT"])
 def update_user(user_id):
@@ -67,3 +60,5 @@ def delete_user(user_id):
     
     return jsonify({"message": "User deleted successfully"}), 200
 
+if __name__ == "__main__":
+    app.run(debug=True)
