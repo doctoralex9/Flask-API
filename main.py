@@ -12,6 +12,10 @@ class User(db.Model):
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
 @app.route("/")
 def index():
     return "Welcome to the User Management API!"
@@ -61,4 +65,6 @@ def delete_user(user_id):
     return jsonify({"message": "User deleted successfully"}), 200
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

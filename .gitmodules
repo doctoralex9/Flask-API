@@ -1,0 +1,3 @@
+[submodule "Flask-API"]
+	path = Flask-API
+	url = https://github.com/doctoralex9/Flask-API.git

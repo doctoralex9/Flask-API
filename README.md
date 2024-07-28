@@ -28,7 +28,7 @@ A simple Flask API with a basic HTML interface.
 
     ```sh
     pip install -r requirements.txt
-    pip install -r psycopg2-binary
+    pip install psycopg2-binary
     pip install Flask-SQLAlchemy
     ```
 
