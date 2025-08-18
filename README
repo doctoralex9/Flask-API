@@ -23,15 +23,9 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 3. Install dependencies:
 pip install -r requirements.txt
 
-4. Set up the database:
-Run the following command to create the initial SQLite database:
-python
->>> from app import db
->>> db.create_all()
->>> exit()
 
-5. Run the application:
-python app.py
+4. Run the application:
+python main.py
 The app will be available at http://127.0.0.1:5000.
 
 Usage:
@@ -44,6 +38,6 @@ Log out using /logout.
 
 File Structure:
 
-app.py: Main application file that includes routes, user authentication, and session management.
+main.py: Main application file that includes routes, user authentication, and session management.
 templates/: HTML templates for each page.
 requirements.txt: Dependencies required for the project.
