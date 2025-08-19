@@ -1,3 +1,2 @@
-Python: Version 3.7 
-Flask: Version 2.3.2
-Flask-SQLAlchemy: Version 3.0.4
+Flask==2.3.2
+Flask-SQLAlchemy==3.0.4

@@ -10,7 +10,7 @@ app.permanent_session_lifetime = timedelta(minutes=5)
 
 db = SQLAlchemy(app)
 
-class users(db.Model):
+class Users(db.Model):
 	_id = db.Column("id", db.Integer, primary_key=True)
 	name = db.Column(db.String(100))
 	email = db.Column(db.String(100))
@@ -26,7 +26,7 @@ def home():
 
 @app.route("/view")
 def view():
-	return render_template("view.html", values=users.query.all())
+	return render_template("view.html", values=Users.query.all())
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -35,12 +35,12 @@ def login():
 		user = request.form["nm"]
 		session["user"] = user
 
-		found_user = users.query.filter_by(name=user).first()
+		found_user = Users.query.filter_by(name=user).first()
 		if found_user:
 			session["email"] = found_user.email 
 		else:
-			usr = users(user, "")
-			db.session.add(usr)	
+			user = Users(user, "")
+			db.session.add(user)	
 			db.session.commit()
 
 		flash("Login Succesful!")
@@ -61,7 +61,7 @@ def user():
 		if request.method =="POST":
 			email = request.form["email"]
 			session["email"] = email
-			found_user = users.query.filter_by(name=user).first()
+			found_user = Users.query.filter_by(name=user).first()
 			found_user.email = email
 			db.session.commit()
 			flash("Email was saved!")
@@ -84,7 +84,7 @@ def logout():
 
 @app.route("/delete/<string:name>")
 def delete(name):
-    user_to_delete = users.query.filter_by(name=name).first()
+    user_to_delete = Users.query.filter_by(name=name).first()
     if user_to_delete:
         db.session.delete(user_to_delete)
         db.session.commit()
