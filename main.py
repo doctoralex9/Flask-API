@@ -83,9 +83,9 @@ def logout():
 	session.pop("email", None)
 	return redirect(url_for("login"))
 
-@app.route("/delete/<string:name>")
-def delete(name):
-    user_to_delete = Users.query.filter_by(name=name).first()
+@app.route("/delete/<int:user_id>")
+def delete(user_id):
+    user_to_delete = Users.query.get(user_id)
     if user_to_delete:
         db.session.delete(user_to_delete)
         db.session.commit()

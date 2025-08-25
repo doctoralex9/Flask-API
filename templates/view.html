@@ -6,7 +6,7 @@
         {% for item in values %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <span>Name: {{ item.name }}, Email: {{ item.email }}</span>
-            <a href="{{ url_for('delete', name=item.name) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+            <a href="{{ url_for('delete', user_id=item._id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
         </li>
         {% endfor %}
     </ul>
